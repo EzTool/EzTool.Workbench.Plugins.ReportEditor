@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document.DocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="ViewHead" Background="Gray" Height="100">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">              
+            </StackPanel>
+        </Grid>
+        <TabControl Grid.Row="1" x:Name="MainTab" />
+        <Grid Grid.Row="2" Background="Gray">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox Text="{Binding SliderValue}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="24" HorizontalAlignment="Right" Margin="3">
+                <Slider Width="180" Value="{Binding SliderValue}" 
+                        Maximum="2" Minimum="-2" 
+                        TickPlacement="BottomRight" 
+                        TickFrequency="0.2" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

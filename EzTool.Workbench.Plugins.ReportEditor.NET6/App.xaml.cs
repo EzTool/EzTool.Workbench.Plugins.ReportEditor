@@ -24,10 +24,10 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            DefaultViewProvider.ViewSuffix = "ViewModle";
+            DefaultViewProvider.ViewSuffix = "ViewModel";
             var objMvpCore = AssemblyProxy.Initial(typeof(DefaultViewProvider).Assembly);
             var objMvp = AssemblyProxy.Initial(typeof(ShowViewHandler).Assembly);
-            var objReportEditor = AssemblyProxy.Initial(typeof(MainViewModle).Assembly);
+            var objReportEditor = AssemblyProxy.Initial(typeof(MainViewModel).Assembly);
             var objAssemblyBundle = AssemblyBundle.Initial(objMvp, objMvpCore, objReportEditor);
             var objRequire = new Require()
             {
