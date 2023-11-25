@@ -10,10 +10,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EzTool.Workbench.Plugins.ReportEditor.NET6
+namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
