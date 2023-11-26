@@ -1,5 +1,6 @@
 ﻿using EzTool.SDK.Infra.Enigma.Extension;
 using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
+using EzTool.SDK.WPF.Nerve.MVVM.AbstractObjects;
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
@@ -32,10 +33,14 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         public void ShowView()
         {
+            var objContext = new DocumentViewContext();
             var objSendData = DTO.Decode<ShowDocumentSendData>();
             var sTabTitle = "NewFile";
 
-            Control = new DocumentView();            
+            Control = new DocumentView()
+            {
+                DataContext = objContext
+            };
             RegionBundle.GetSingleton()?
                 .FindByHashCode(objSendData.HashCode)?
                 .GetAnchorPoint(sTabTitle)?
@@ -45,5 +50,11 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
         #endregion
 
 
+    }
+
+    public class DocumentViewContext :
+        BaseViewContext
+    {
+        public double SliderValue { get; set; }
     }
 }
