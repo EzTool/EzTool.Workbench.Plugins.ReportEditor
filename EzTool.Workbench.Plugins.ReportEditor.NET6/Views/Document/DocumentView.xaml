@@ -34,17 +34,17 @@
                                     <Binding Path="Zoom"/>
                                 </MultiBinding>
                             </Viewbox.Width>
-                            <Viewbox.Height>
+                            <Viewbox.MinHeight>
                                 <MultiBinding Converter="{StaticResource MultiBindingMultiplier}">
                                     <Binding Path="Height"/>
                                     <Binding Path="Zoom"/>
                                 </MultiBinding>
-                            </Viewbox.Height>
+                            </Viewbox.MinHeight>
                             <StackPanel Orientation="Horizontal">
                                 <RichTextBox x:Name="MainBox" BorderThickness="0" FontSize="14"                          
                                              Block.LineHeight="1"
                                              Width="{Binding Width}" 
-                                             Height="{Binding Height}" />
+                                             MinHeight="{Binding Height}" />
                             </StackPanel>
                         </Viewbox>
                     </StackPanel>
