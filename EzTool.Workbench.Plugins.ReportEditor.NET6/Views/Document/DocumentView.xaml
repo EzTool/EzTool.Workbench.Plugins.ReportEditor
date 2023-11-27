@@ -17,6 +17,10 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" x:Name="ViewHead" Background="Gray" Height="100">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Height="120" Width="65" Margin="3" Content="插入&#x0a;文字"
+                        Click="InsertTextButton_Click"/>                
+                <Button x:Name="UpdateTextButton" Height="120" Width="65" Margin="3" Content="更新&#x0a;文字"
+                        Click="UpdateTextButton_Click"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" >
