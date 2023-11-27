@@ -1,6 +1,5 @@
 ﻿using EzTool.SDK.Infra.Enigma.Extension;
 using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
-using EzTool.SDK.WPF.Nerve.MVVM.AbstractObjects;
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
@@ -49,11 +48,5 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         #endregion
 
-    }
-
-    public class DocumentViewContext :
-        BaseViewContext
-    {
-        public double SliderValue { get; set; }
     }
 }
