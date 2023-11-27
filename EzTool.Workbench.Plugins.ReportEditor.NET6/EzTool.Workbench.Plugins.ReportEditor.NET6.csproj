@@ -8,15 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ViewUtilities\**" />
+    <EmbeddedResource Remove="Views\ViewUtilities\**" />
+    <None Remove="Views\ViewUtilities\**" />
+    <Page Remove="Views\ViewUtilities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EzTool.SDK.Infra.Enigma" Version="1.0.0" />
     <PackageReference Include="EzTool.SDK.WPF.Nerve.MVP" Version="2.0.2" />
     <PackageReference Include="EzTool.SDK.WPF.Nerve.MVVM" Version="2.0.0" />
     <PackageReference Include="EzTool.SDK.WPF.Surface" Version="1.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\ViewUtilities\" />
   </ItemGroup>
 
 </Project>

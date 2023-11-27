@@ -49,7 +49,6 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         #endregion
 
-
     }
 
     public class DocumentViewContext :
