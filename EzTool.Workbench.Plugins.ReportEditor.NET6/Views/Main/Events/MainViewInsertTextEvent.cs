@@ -14,8 +14,9 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
         {
             var objRequire = new ViewRequire()
             {
-                Action = $@"InsertTextAction",
-                Parameters = ViewContext.HashCode
+                Action = $@"InsertText",
+                Operator = ViewContext.HashCode,
+                Parameters = $@"[text inserted]"
             };
 
             var objResult = ViewContext.Presenter.OnViewEvent(objRequire);

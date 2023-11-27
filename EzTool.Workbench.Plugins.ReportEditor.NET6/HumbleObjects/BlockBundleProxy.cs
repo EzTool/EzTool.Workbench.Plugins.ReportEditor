@@ -28,7 +28,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 
         #region -- 靜態方法 (Shared Method ) --
 
-        public  static IBlockBundleProxy Initial(BlockCollection pi_objBlocks)
+        public static IBlockBundleProxy Initial(BlockCollection pi_objBlocks)
         {
             return new BlockBundleProxy(pi_objBlocks);
         }
@@ -47,11 +47,21 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
             return this;
         }
 
+        public IBlockBundleProxy Append(string pi_sText)
+        {
+            var objParagraph = new Paragraph();
+
+            objParagraph.Inlines.Add(pi_sText);
+            l_objBlocks.Add(objParagraph);
+            return this;
+        }
+
         #endregion
     }
 
     public interface IBlockBundleProxy
     {
         IBlockBundleProxy Append(TextBlock pi_objTextBlock);
+        IBlockBundleProxy Append(string pi_sText);
     }
 }

@@ -4,24 +4,17 @@ using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 {
     public class DocumentViewModel :
         IView, IAnchorComponent
-    {
+    {       
 
         #region -- 介面實做 ( Implements ) - [IView] --
 
         public object Control { get; set; }
         public IAnchorPoint AnchorPoint { get; set; }
-        public void OnComponetCleaned()
-        {
-
-        }
+        public void OnComponetCleaned() { }
 
         #endregion
 
@@ -44,10 +37,6 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
                 .FindByHashCode(objSendData.HashCode)?
                 .GetAnchorPoint(sTabTitle)?
                 .Mount(this);
-        }
-
-        internal void InsertText()
-        {
         }
 
         #endregion
