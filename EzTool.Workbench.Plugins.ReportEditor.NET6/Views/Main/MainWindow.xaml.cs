@@ -23,11 +23,5 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
         {
             InitializeComponent();
         }
-
-        private void MainTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var objContext = (MainViewContext)DataContext;
-
-        }
     }
 }

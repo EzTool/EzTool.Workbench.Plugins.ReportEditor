@@ -18,11 +18,11 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button Height="120" Width="65" Margin="3" Content="新增&#x0a;檔案"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewNewDocumentEvent"/>
+                <Button Height="120" Width="65" Margin="3" Content="插入&#x0a;文字"
+                        Command="{Binding RelayCommand}" CommandParameter="MainViewInsertTextEvent"/>
             </StackPanel>
         </Grid>
-        <TabControl Grid.Row="1" x:Name="MainTab" 
-                    SelectedItem="{Binding ActiveTabItem}"
-                    SelectedIndex="{Binding ActiveTabItemIndex}" />
+        <TabControl Grid.Row="1" x:Name="MainTab" />
         <Grid Grid.Row="2" Background="Gray">                       
         </Grid>
     </Grid>

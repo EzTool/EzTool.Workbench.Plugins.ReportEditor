@@ -46,6 +46,10 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
                 .Mount(this);
         }
 
+        internal void InsertText()
+        {
+        }
+
         #endregion
 
     }
