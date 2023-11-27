@@ -2,14 +2,13 @@
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Utilities;
 
-using System;
-
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
 {
     public class MainViewModel :
         IView
     {
 
+        #region -- 介面實做 ( Implements ) - [IView] --
 
         public IPresenter Presenter { get; set; }
 
@@ -17,7 +16,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
 
         public void ShowView()
         {
-            var objView = new MainWindow();
+            var objView = new MainWindow();            
             var objContext = new MainViewContext()
             {
                 Presenter = Presenter ,
@@ -27,5 +26,8 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
             objView.DataContext = objContext;           
             objView.ShowDialog();
         }
+
+        #endregion
+
     }
 }
