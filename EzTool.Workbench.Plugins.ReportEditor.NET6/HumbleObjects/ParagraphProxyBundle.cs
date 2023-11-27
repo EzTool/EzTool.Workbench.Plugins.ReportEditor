@@ -2,6 +2,9 @@
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Shapes;
+
+using static HarmonyLib.Code;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 {
@@ -33,7 +36,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
         #endregion
 
         #region -- 介面實做 ( Implements ) - [IParagraphProxyBundle] --
-
+       
         public IParagraphProxyBundle Append(TextBlock pi_objTextBlock)
         {
             var objParagraph = new Paragraph();
@@ -65,6 +68,6 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
     public interface IParagraphProxyBundle
     {
         string AllText { get; }
-        IParagraphProxyBundle Append(TextBlock pi_objTextBlock);
+        IParagraphProxyBundle Append(TextBlock pi_objTextBlock);        
     }
 }

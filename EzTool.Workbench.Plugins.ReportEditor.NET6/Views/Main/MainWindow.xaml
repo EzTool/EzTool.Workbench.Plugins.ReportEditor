@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:E="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main"
         mc:Ignorable="d" WindowState="Maximized"
@@ -15,11 +16,19 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" x:Name="ViewHead" Background="Gray" Height="100">
+            <Grid.Resources>
+                <E:MainViewEditingCommandEvent Command="BulletedList" x:Key="BulletedList" />
+                <E:MainViewEditingCommandEvent Command="Numbering" x:Key="Numbering" />
+            </Grid.Resources>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button Height="120" Width="65" Margin="3" Content="新增&#x0a;檔案"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewNewDocumentEvent"/>
                 <Button Height="120" Width="65" Margin="3" Content="插入&#x0a;文字"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewInsertTextEvent"/>
+                <Button Height="120" Width="65" Margin="3" Content="條列&#x0a;文字"
+                        Command="{Binding RelayCommand}" CommandParameter="{StaticResource BulletedList}"/>
+                <Button Height="120" Width="65" Margin="3" Content="序列&#x0a;文字"
+                        Command="{Binding RelayCommand}" CommandParameter="{StaticResource Numbering}"/>
             </StackPanel>
         </Grid>
         <TabControl Grid.Row="1" x:Name="MainTab" />

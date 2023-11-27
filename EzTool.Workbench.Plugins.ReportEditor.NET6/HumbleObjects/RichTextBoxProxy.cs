@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows;
+using static HarmonyLib.Code;
+using System.Windows.Shapes;
+using System.Windows.Automation.Text;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 {
@@ -41,6 +44,11 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 
         #region -- 介面實做 ( Implements ) - [IRichTextBoxProxy] --
 
+        public void BulletedList()
+        {
+            EditingCommands.ToggleBullets.Execute(null, l_objRichTextBox);            
+        }
+
         public void Append(IBitMapImageProxy pi_objImage)
         {
             Paragraph p = new Paragraph();
@@ -68,7 +76,8 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 
     public interface IRichTextBoxProxy
     {
-        IFlowDocumentProxy Document { get; }        
+        void BulletedList();
+        IFlowDocumentProxy Document { get; }
         void Append(IBitMapImageProxy pi_objImage);
     }
 }
