@@ -58,10 +58,7 @@
                 </ScrollViewer>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2" Background="Gray">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <TextBox Text="{Binding SliderValue}" />
-            </StackPanel>
+        <Grid Grid.Row="2" Background="Gray">           
             <StackPanel Orientation="Horizontal" Height="24" HorizontalAlignment="Right" Margin="3">
                 <Slider Width="180" Value="{Binding SliderValue}" 
                         Maximum="1.8" Minimum="0.2" 

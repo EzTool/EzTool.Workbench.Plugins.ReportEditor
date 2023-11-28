@@ -48,7 +48,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         #endregion
 
-        #region -- 介面實做 ( Implements ) - [IView] --
+        #region -- 介面實做 ( Implements ) - [IAnchorComponent] --
 
         public object Control { get; set; }
         public IAnchorPoint AnchorPoint { get; set; }
@@ -68,11 +68,23 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
                 ParentHashCode = objSendData.HashCode,
                 Presenter = Presenter,
                 FilePath = objSendData.FilePath,
-                TabTitle = $@"New File"
+                TabTitle = $@"新建檔案"
             };
             var objView = new DocumentView() { DataContext = objContext };
             var objTabTitle = objContext.GetTabTitleControl();
 
+            if (string.IsNullOrEmpty(objSendData.FilePath) == false)
+            {
+                var objDocumentView = objView;
+                var objDocument = objDocumentView.MainBox.Document;
+                var objTextRange = new TextRange(objDocument.ContentStart, objDocument.ContentEnd);
+
+                using (FileStream objFileStream = new FileStream(objSendData.FilePath, FileMode.Open))
+                {
+                    objTextRange.Load(objFileStream, DataFormats.XamlPackage);
+                }
+                objContext.TabTitle = Path.GetFileNameWithoutExtension(objSendData.FilePath);
+            }
             Control = objView;
             RegionBundle.GetSingleton()?
                 .FindByHashCode(objSendData.HashCode)?
