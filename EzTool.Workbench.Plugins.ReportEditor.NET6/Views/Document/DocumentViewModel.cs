@@ -4,11 +4,15 @@ using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
 
+using System.IO;
+using System.Windows;
+using System.Windows.Documents;
+
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 {
     public class DocumentViewModel :
         IView, IAnchorComponent
-    {       
+    {
 
         #region -- 介面實做 ( Implements ) - [IView] --
 
@@ -25,14 +29,23 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         public void ShowView()
         {
-            var objContext = new DocumentViewContext();
             var objSendData = DTO.Decode<ShowDocumentSendData>();
-            var sTabTitle = "NewFile";
+            var objContext = new DocumentViewContext();
+            var objView = new DocumentView() { DataContext = objContext };
+            var sTabTitle = Path.GetFileName(objSendData.FilePath);
 
-            Control = new DocumentView()
+            sTabTitle = string.IsNullOrEmpty(sTabTitle) ? "New File" : sTabTitle;
+            if (string.IsNullOrEmpty(objSendData.FilePath) == false)
             {
-                DataContext = objContext
-            };
+                var objDocument = objView.MainBox.Document;
+                var objTextRange = new TextRange(objDocument.ContentStart, objDocument.ContentEnd);
+
+                using (FileStream objFileStream = new FileStream(objSendData.FilePath, FileMode.Open))
+                {
+                    objTextRange.Load(objFileStream, DataFormats.XamlPackage);
+                }
+            }
+            Control = objView;
             RegionBundle.GetSingleton()?
                 .FindByHashCode(objSendData.HashCode)?
                 .GetAnchorPoint(sTabTitle)?

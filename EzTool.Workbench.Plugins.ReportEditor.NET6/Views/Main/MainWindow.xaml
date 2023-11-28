@@ -20,7 +20,9 @@
                 <E:MainViewEditingCommandEvent Command="BulletedList" x:Key="BulletedList" />
                 <E:MainViewEditingCommandEvent Command="Numbering" x:Key="Numbering" />
             </Grid.Resources>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">                
+                <Button Height="120" Width="65" Margin="3" Content="功能&#x0a;測試"
+                        Command="{Binding RelayCommand}" CommandParameter="MainViewPocButtonClickEvent"/>
                 <Button Height="120" Width="65" Margin="3" Content="新增&#x0a;檔案"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewNewDocumentEvent"/>
                 <Button Height="120" Width="65" Margin="3" Content="插入&#x0a;文字"
