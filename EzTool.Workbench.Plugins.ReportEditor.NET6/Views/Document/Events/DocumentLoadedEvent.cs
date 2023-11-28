@@ -31,7 +31,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document.Events
                     {
                         objTextRange.Load(objFileStream, DataFormats.XamlPackage);
                     }
-                    ViewContext.TabTitle = Path.GetFileName(ViewContext.FilePath);
+                    ViewContext.TabTitle = Path.GetFileNameWithoutExtension(ViewContext.FilePath);
                 }
             }
         }
