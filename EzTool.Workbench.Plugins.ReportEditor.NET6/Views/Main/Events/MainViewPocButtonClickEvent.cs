@@ -3,6 +3,7 @@ using EzTool.SDK.WPF.Nerve.MVP.ValueObjects;
 using EzTool.SDK.WPF.Nerve.MVVM.AbstractObjects;
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Utilities.View;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document;
@@ -15,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
@@ -25,46 +27,18 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
 
         protected override void OnExecute()
         {
-            OpenFileOfXamlPackage();
-        }
-
-        private void OpenFileOfXamlPackage()
-        {
-            var sFilePath = $@"C:\_YKK\DEMO.xamlpackage";
-            var objRequire = new ViewRequire()
-            {
-                Action = $@"ShowView",
-                Operator = $@"Document",
-                Parameters = new ShowDocumentSendData()
-                {
-                    HashCode = ViewContext.HashCode,
-                    FilePath = sFilePath
-                }.Encode().ToString()
-            };
-
-            var objResult = ViewContext.Presenter.OnViewEvent(objRequire);
-        }
-
-        private void SaveFileAsXamlPackage()
-        {
             var objRegion = RegionBundle.GetSingleton().FindByHashCode(ViewContext.HashCode);
             var objFilter = DocumentAnchorPointFilter.Initial();
             var objAnchorPoint = objRegion?.GetAnchorPoint(objFilter);
             var objComponent = (IAnchorComponent)objAnchorPoint?.AnchorComponent;
             var objDocumentView = (DocumentView)objComponent?.Control;
-            var objRichTextBox = objDocumentView.MainBox;
-            var objDocument = objRichTextBox.Document;
+            var objDocument = objDocumentView.MainBox.Document;
 
-            var sFilePath = $@"C:\_YKK\DEMO.xamlpackage";
-            var objTextRange = new TextRange(objDocument.ContentStart, objDocument.ContentEnd);
+            var objButton = new TextBlock() { Width = 125, Height = 25, Text = "DEMO" };
+            var objFlowDowument = FlowDocumentProxy.Initial(objDocument);
 
-            using (FileStream objFileStream = File.Open(sFilePath, FileMode.OpenOrCreate))
-            {
-                objTextRange.Save(objFileStream, DataFormats.XamlPackage, true);
-            }
+            objFlowDowument.Blocks.Append(objButton);
         }
-
-
 
         private void SetBulletedAsBox()
         {

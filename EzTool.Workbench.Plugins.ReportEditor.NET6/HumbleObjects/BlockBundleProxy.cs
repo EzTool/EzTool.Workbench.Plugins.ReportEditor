@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
@@ -37,7 +38,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 
         #region -- 介面實做 ( Implements ) - [IBlockBundleProxy] --
 
-        public IBlockBundleProxy Append(TextBlock pi_objTextBlock)
+        public IBlockBundleProxy Append(UIElement pi_objTextBlock)
         {
             var objContainer = new InlineUIContainer(pi_objTextBlock);
             var objParagraph = new Paragraph();
@@ -61,7 +62,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 
     public interface IBlockBundleProxy
     {
-        IBlockBundleProxy Append(TextBlock pi_objTextBlock);
+        IBlockBundleProxy Append(UIElement pi_objTextBlock);
         IBlockBundleProxy Append(string pi_sText);
     }
 }
