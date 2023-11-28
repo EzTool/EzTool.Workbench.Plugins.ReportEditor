@@ -3,7 +3,10 @@ using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Extensions;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.Utilities.View;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
+
+using Microsoft.Win32;
 
 using System;
 using System.IO;
@@ -15,8 +18,35 @@ using System.Windows.Documents;
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 {
     public class DocumentViewModel :
-        IView, IAnchorComponent
+        IView, IAnchorComponent, IDocumentEditor
     {
+        #region -- 介面實做 ( Implements ) - [IDocumentEditor] --
+
+        public void SaveDocument()
+        {
+            var objSaveFileDialog1 = new SaveFileDialog()
+            {
+                Title = $@"Save File",
+                Filter = $@"xamlpackage|*.xamlpackage",
+            };
+
+            objSaveFileDialog1.ShowDialog();
+            if (string.IsNullOrEmpty(objSaveFileDialog1.FileName) == false)
+            {
+                var objDocumentView = (DocumentView)this.Control;
+                var objDocument = objDocumentView.MainBox.Document;
+                var objTextRange = new TextRange(objDocument.ContentStart, objDocument.ContentEnd);
+
+                using (FileStream objFileStream = new FileStream(objSaveFileDialog1.FileName, FileMode.OpenOrCreate))
+                {
+                    objTextRange.Save(objFileStream, DataFormats.XamlPackage);
+                }
+                ((DocumentViewContext)objDocumentView.DataContext).FilePath = objSaveFileDialog1.FileName;
+                ((DocumentViewContext)objDocumentView.DataContext).TabTitle = Path.GetFileNameWithoutExtension(objSaveFileDialog1.FileName);
+            }
+        }
+
+        #endregion
 
         #region -- 介面實做 ( Implements ) - [IView] --
 
@@ -42,7 +72,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
             };
             var objView = new DocumentView() { DataContext = objContext };
             var objTabTitle = objContext.GetTabTitleControl();
-           
+
             Control = objView;
             RegionBundle.GetSingleton()?
                 .FindByHashCode(objSendData.HashCode)?
@@ -52,5 +82,10 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         #endregion
 
+    }
+
+    public interface IDocumentEditor
+    {
+        void SaveDocument();
     }
 }

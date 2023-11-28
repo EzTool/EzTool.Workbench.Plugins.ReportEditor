@@ -21,17 +21,19 @@
                 <E:MainViewEditingCommandEvent Command="Numbering" x:Key="Numbering" />
             </Grid.Resources>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">                
-                <Button Height="120" Width="65" Margin="3" Content="功能&#x0a;測試"
-                        Command="{Binding RelayCommand}" CommandParameter="MainViewPocButtonClickEvent"/>
-                <Button Height="120" Width="65" Margin="3" Content="開啟&#x0a;檔案"
+                <Button Height="100" Width="65" Margin="3" Content="功能&#x0a;測試"
+                        Command="{Binding RelayCommand}" CommandParameter="MainViewPocButtonClickEvent"/>                
+                <Button Height="100" Width="65" Margin="3" Content="儲存&#x0a;檔案"
+                        Command="{Binding RelayCommand}" CommandParameter="MainViewSaveFileEvent"/>
+                <Button Height="100" Width="65" Margin="3" Content="開啟&#x0a;檔案"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewOpenFileEvent"/>
-                <Button Height="120" Width="65" Margin="3" Content="新增&#x0a;檔案"
+                <Button Height="100" Width="65" Margin="3" Content="新增&#x0a;檔案"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewNewDocumentEvent"/>
-                <Button Height="120" Width="65" Margin="3" Content="插入&#x0a;文字"
+                <Button Height="100" Width="65" Margin="3" Content="插入&#x0a;文字"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewInsertTextEvent"/>
-                <Button Height="120" Width="65" Margin="3" Content="條列&#x0a;文字"
+                <Button Height="100" Width="65" Margin="3" Content="條列&#x0a;文字"
                         Command="{Binding RelayCommand}" CommandParameter="{StaticResource BulletedList}"/>
-                <Button Height="120" Width="65" Margin="3" Content="序列&#x0a;文字"
+                <Button Height="100" Width="65" Margin="3" Content="序列&#x0a;文字"
                         Command="{Binding RelayCommand}" CommandParameter="{StaticResource Numbering}"/>
             </StackPanel>
         </Grid>
