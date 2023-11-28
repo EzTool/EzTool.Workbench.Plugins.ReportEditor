@@ -23,6 +23,8 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">                
                 <Button Height="120" Width="65" Margin="3" Content="功能&#x0a;測試"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewPocButtonClickEvent"/>
+                <Button Height="120" Width="65" Margin="3" Content="開啟&#x0a;檔案"
+                        Command="{Binding RelayCommand}" CommandParameter="MainViewOpenFileEvent"/>
                 <Button Height="120" Width="65" Margin="3" Content="新增&#x0a;檔案"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewNewDocumentEvent"/>
                 <Button Height="120" Width="65" Margin="3" Content="插入&#x0a;文字"

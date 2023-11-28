@@ -2,10 +2,14 @@
 using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.Extensions;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
 
+using System;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
@@ -26,29 +30,23 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         public IPresenter Presenter { get; set; }
         public string DTO { get; set; }
-
         public void ShowView()
         {
             var objSendData = DTO.Decode<ShowDocumentSendData>();
-            var objContext = new DocumentViewContext();
-            var objView = new DocumentView() { DataContext = objContext };
-            var sTabTitle = Path.GetFileName(objSendData.FilePath);
-
-            sTabTitle = string.IsNullOrEmpty(sTabTitle) ? "New File" : sTabTitle;
-            if (string.IsNullOrEmpty(objSendData.FilePath) == false)
+            var objContext = new DocumentViewContext()
             {
-                var objDocument = objView.MainBox.Document;
-                var objTextRange = new TextRange(objDocument.ContentStart, objDocument.ContentEnd);
-
-                using (FileStream objFileStream = new FileStream(objSendData.FilePath, FileMode.Open))
-                {
-                    objTextRange.Load(objFileStream, DataFormats.XamlPackage);
-                }
-            }
+                ParentHashCode = objSendData.HashCode,
+                Presenter = Presenter,
+                FilePath = objSendData.FilePath,
+                TabTitle = $@"New File"
+            };
+            var objView = new DocumentView() { DataContext = objContext };
+            var objTabTitle = objContext.GetTabTitleControl();
+           
             Control = objView;
             RegionBundle.GetSingleton()?
                 .FindByHashCode(objSendData.HashCode)?
-                .GetAnchorPoint(sTabTitle)?
+                .GetAnchorPoint(objTabTitle)?
                 .Mount(this);
         }
 
