@@ -35,10 +35,20 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
             var objAnchorPoint = objRegion?.GetAnchorPoint(objFilter);
             var objComponent = (IAnchorComponent)objAnchorPoint?.AnchorComponent;
             var objDocumentView = (DocumentView)objComponent?.Control;
-            var objDocument = objDocumentView.MainBox.Document;
-            var objRichTextBox = RichTextBoxProxy.Initial(objDocumentView.MainBox);
+            var objRichTextBoxInstance = objDocumentView.MainBox;
+            var objFlowDocumentInstance = objRichTextBoxInstance.Document;
 
-            objRichTextBox.SetRef(EditableTabl());
+            var objRichTextBox = RichTextBoxProxy.Initial(objRichTextBoxInstance);
+            var objFlowDocument = FlowDocumentProxy.Initial(objFlowDocumentInstance);
+
+            var objGrid = new Grid() { Width = 130, Height = 50 };
+
+            objFlowDocument.Blocks.Append(objGrid);
+
+            //var objDocument = objDocumentView.MainBox.Document;
+            //var objRichTextBox = RichTextBoxProxy.Initial(objDocumentView.MainBox);
+
+            //objRichTextBox.SetRef(EditableTabl());
         }
 
 

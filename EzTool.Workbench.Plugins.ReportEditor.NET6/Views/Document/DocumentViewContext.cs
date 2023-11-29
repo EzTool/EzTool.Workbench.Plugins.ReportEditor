@@ -16,8 +16,8 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         public string TabTitle { get; set; }
         public double SliderValue { get; set; } = 1;
-        public double Width { get; set; } = 595;
-        public double Height { get; set; } = 842;
+        public double Width { get; set; } = 565;
+        public double Height { get; set; } = 800;
         public double Zoom { get; set; } = 1;
     }
 }
