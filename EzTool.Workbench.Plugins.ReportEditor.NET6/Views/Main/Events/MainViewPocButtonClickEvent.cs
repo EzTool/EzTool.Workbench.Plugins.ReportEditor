@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Media;
+
+using static System.Net.Mime.MediaTypeNames;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
 {
@@ -33,11 +36,56 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
             var objComponent = (IAnchorComponent)objAnchorPoint?.AnchorComponent;
             var objDocumentView = (DocumentView)objComponent?.Control;
             var objDocument = objDocumentView.MainBox.Document;
+            var objRichTextBox = RichTextBoxProxy.Initial(objDocumentView.MainBox);
 
-            var objButton = new TextBlock() { Width = 125, Height = 25, Text = "DEMO" };
-            var objFlowDowument = FlowDocumentProxy.Initial(objDocument);
+            objRichTextBox.SetRef(EditableTabl());
+        }
 
-            objFlowDowument.Blocks.Append(objButton);
+
+        private string EditableTabl()
+        {
+            StringBuilder tableRtf = new StringBuilder();
+            tableRtf.Append(@"{");
+            tableRtf.Append(@"\rtf1\ansi\deff0
+\trowd
+\cellx1000
+\cellx2000
+\cellx3000
+\intbl cell 1\cell
+\intbl cell 2\cell
+\intbl cell 3\cell
+\row");
+            tableRtf.Append(@"}");
+
+            string combined2 = tableRtf.ToString();
+            return combined2;
+        }
+
+        private Table BuildTable()
+        {
+            Table t = new Table();
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    t.Columns.Add(new TableColumn());
+            //}
+
+            var rg = new TableRowGroup();
+
+            for (int r = 0; r < 3; r++)
+            {
+                TableRow row = new TableRow();
+                row.Background = Brushes.Silver;
+                row.FontSize = 16;
+                row.FontWeight = FontWeights.Bold;
+                for (int i = 0; i < 7; i++)
+                {
+                    row.Cells.Add(new TableCell(new Paragraph(new Run($@"{r}-{i}"))));
+                }
+                //row.Cells[0].ColumnSpan = 6;
+                rg.Rows.Add(row);
+            }
+            t.RowGroups.Add(rg);
+            return t;
         }
 
         private void SetBulletedAsBox()

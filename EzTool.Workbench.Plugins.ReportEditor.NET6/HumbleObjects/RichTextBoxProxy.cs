@@ -9,6 +9,8 @@ using System.Windows;
 using static HarmonyLib.Code;
 using System.Windows.Shapes;
 using System.Windows.Automation.Text;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 {
@@ -44,6 +46,12 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 
         #region -- 介面實做 ( Implements ) - [IRichTextBoxProxy] --
 
+        public void SetRef(string pi_sRTF)
+        {
+            MemoryStream stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(pi_sRTF));
+            l_objRichTextBox.Selection.Load(stream, DataFormats.Rtf);
+        }
+
         public void BulletedList()
         {
             EditingCommands.ToggleBullets.Execute(null, l_objRichTextBox);            
@@ -76,6 +84,8 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 
     public interface IRichTextBoxProxy
     {
+        void SetRef(string pi_sRTF);
+
         void BulletedList();
         IFlowDocumentProxy Document { get; }
         void Append(IBitMapImageProxy pi_objImage);

@@ -37,7 +37,11 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
         #endregion
 
         #region -- 介面實做 ( Implements ) - [IBlockBundleProxy] --
-
+        public IBlockBundleProxy Append(Block pi_objBlock)
+        {
+            l_objBlocks.Add(pi_objBlock);
+            return this;
+        }
         public IBlockBundleProxy Append(UIElement pi_objTextBlock)
         {
             var objContainer = new InlineUIContainer(pi_objTextBlock);
@@ -62,7 +66,8 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects
 
     public interface IBlockBundleProxy
     {
-        IBlockBundleProxy Append(UIElement pi_objTextBlock);
+        IBlockBundleProxy Append(Block pi_objBlock);
+        IBlockBundleProxy Append(UIElement pi_objUiElement);
         IBlockBundleProxy Append(string pi_sText);
     }
 }
