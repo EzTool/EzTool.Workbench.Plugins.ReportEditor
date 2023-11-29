@@ -15,30 +15,36 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" x:Name="ViewHead" Background="Gray" Height="100">
+        <Grid Grid.Row="0" x:Name="ViewHead" Background="Gray" Height="60">
             <Grid.Resources>
                 <E:MainViewEditingCommandEvent Command="BulletedList" x:Key="BulletedList" />
                 <E:MainViewEditingCommandEvent Command="Numbering" x:Key="Numbering" />
             </Grid.Resources>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">                
-                <Button Height="100" Width="65" Margin="3" Content="功能&#x0a;測試"
-                        Command="{Binding RelayCommand}" CommandParameter="MainViewPocButtonClickEvent"/>                
-                <Button Height="100" Width="65" Margin="3" Content="儲存&#x0a;檔案"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Height="48" Width="48" Margin="3" Content="功能&#x0a;測試"
+                        Command="{Binding RelayCommand}" CommandParameter="MainViewPocButtonClickEvent"/>
+                <Button Height="48" Width="48" Margin="3" Content="儲存&#x0a;檔案"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewSaveFileEvent"/>
-                <Button Height="100" Width="65" Margin="3" Content="開啟&#x0a;檔案"
+                <Button Height="48" Width="48" Margin="3" Content="開啟&#x0a;檔案"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewOpenFileEvent"/>
-                <Button Height="100" Width="65" Margin="3" Content="新增&#x0a;檔案"
-                        Command="{Binding RelayCommand}" CommandParameter="MainViewNewDocumentEvent"/>
-                <Button Height="100" Width="65" Margin="3" Content="插入&#x0a;文字"
+                <Button Height="48" Width="48" Margin="3" Content="插入&#x0a;文字"
                         Command="{Binding RelayCommand}" CommandParameter="MainViewInsertTextEvent"/>
-                <Button Height="100" Width="65" Margin="3" Content="條列&#x0a;文字"
-                        Command="{Binding RelayCommand}" CommandParameter="{StaticResource BulletedList}"/>
-                <Button Height="100" Width="65" Margin="3" Content="序列&#x0a;文字"
-                        Command="{Binding RelayCommand}" CommandParameter="{StaticResource Numbering}"/>
+                <Button Command="{Binding RelayCommand}" CommandParameter="MainViewNewDocumentEvent"
+                        Height="48" Width="48" Margin="3" >
+                    <Image Source="pack://application:,,,/_images/new48.png" />
+                </Button>
+                <Button Command="{Binding RelayCommand}" CommandParameter="{StaticResource BulletedList}"
+                        Width="48" Height="48" Margin="3">
+                    <Image Source="pack://application:,,,/_images/bulletlist48.png" />
+                </Button>
+                <Button Command="{Binding RelayCommand}" CommandParameter="{StaticResource Numbering}"
+                        Width="48" Height="48" Margin="3">
+                    <Image Source="pack://application:,,,/_images/numberlist48.png" />
+                </Button>
             </StackPanel>
         </Grid>
         <TabControl Grid.Row="1" x:Name="MainTab" />
-        <Grid Grid.Row="2" Background="Gray">                       
+        <Grid Grid.Row="2" Background="Gray">
         </Grid>
     </Grid>
 </Window>

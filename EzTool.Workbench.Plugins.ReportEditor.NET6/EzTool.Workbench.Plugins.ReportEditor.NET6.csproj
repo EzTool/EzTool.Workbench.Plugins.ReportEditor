@@ -15,11 +15,47 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="_images\bulletlist16.png" />
+    <None Remove="_images\bulletlist48.png" />
+    <None Remove="_images\new16.png" />
+    <None Remove="_images\new32.png" />
+    <None Remove="_images\new48.png" />
+    <None Remove="_images\numberlist16.png" />
+    <None Remove="_images\numberlist48.png" />
+    <None Remove="_images\ul.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EzTool.SDK.Infra.Enigma" Version="1.0.0" />
     <PackageReference Include="EzTool.SDK.WPF.Nerve.MVP" Version="2.0.2" />
     <PackageReference Include="EzTool.SDK.WPF.Nerve.MVVM" Version="2.0.0" />
     <PackageReference Include="EzTool.SDK.WPF.Surface" Version="1.0.3" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="_images\bulletlist16.png" />
+    <Resource Include="_images\bulletlist48.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="_images\new16.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="_images\new32.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="_images\new48.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="_images\numberlist16.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="_images\numberlist48.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="_images\ul.gif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
