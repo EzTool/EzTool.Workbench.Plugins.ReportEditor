@@ -4,16 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message"
-             mc:Ignorable="d" Background="Black"
-             Width="200"
-             Height="200" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:E="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message.Events"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=local:MessageViewContext}"
+             MinWidth="650" MinHeight="250"
+             d:DesignHeight="250" d:DesignWidth="120">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <E:MessageViewButtonClickEvent ButtonType="OK" x:Key="OkButtonClickEvent" />
+        <E:MessageViewButtonClickEvent ButtonType="Yes" x:Key="YesButtonClickEvent" />
+        <E:MessageViewButtonClickEvent ButtonType="No" x:Key="NoButtonClickEvent" />
+        <E:MessageViewButtonClickEvent ButtonType="Cancel" x:Key="CancelButtonClickEvent" />
+    </UserControl.Resources>
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Button Width="125" Height="35" Content="Close"
-                        Command="{Binding RelayCommand}" CommandParameter="MessageViewCloseEvent"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="Message" />
+        </Grid>
+
+        <Grid Grid.Row="2" Background="LightGray">
+            <StackPanel Orientation="Vertical" Margin="3">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Width="125" Height="35" Content="確定" 
+                            Visibility="{Binding IsShowOKButton, Converter={StaticResource BoolToVis}}"
+                            Command="{Binding RelayCommand}" 
+                            CommandParameter="{StaticResource OkButtonClickEvent}"/>
+                    <Button Width="125" Height="35" Content="Yes"
+                            Visibility="{Binding IsShowYesButton, Converter={StaticResource BoolToVis}}"
+                            Command="{Binding RelayCommand}" 
+                            CommandParameter="{StaticResource YesButtonClickEvent}"/>
+                    <Button Width="125" Height="35" Content="No"
+                            Visibility="{Binding IsShowNoButton, Converter={StaticResource BoolToVis}}"
+                            Command="{Binding RelayCommand}" 
+                            CommandParameter="{StaticResource NoButtonClickEvent}"/>
+                    <Button Width="125" Height="35" Content="Cancel"
+                            Visibility="{Binding IsShowCancelButton, Converter={StaticResource BoolToVis}}"
+                            Command="{Binding RelayCommand}" 
+                            CommandParameter="{StaticResource CancelButtonClickEvent}"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

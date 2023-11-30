@@ -1,7 +1,5 @@
 ﻿using EzTool.SDK.Infra.Enigma.Extension;
 using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
-using EzTool.SDK.WPF.Nerve.MVVM.AbstractObjects;
-using EzTool.SDK.WPF.Nerve.MVVM.Tags;
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
@@ -44,8 +42,12 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message
             var objSendData = DTO.Decode<ShowMessageSendData>();
             var objContext = new MessageViewContext()
             {
-                Presenter = Presenter, 
-                MaskHashCode = objSendData.HashCode
+                Presenter = Presenter,
+                MaskHashCode = objSendData.HashCode,
+                IsShowCancelButton = false,
+                IsShowNoButton = false,
+                IsShowYesButton = false,
+                IsShowOKButton = true
             };
             var objView = new MessageView() { DataContext = objContext };
 
@@ -57,14 +59,5 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message
         }
 
         #endregion
-    }
-
-    public class MessageViewContext :
-        BaseViewContext
-    {
-        [SkipNotifyChanged]
-        public IPresenter Presenter { get; set; }
-        [SkipNotifyChanged]
-        public string MaskHashCode { get; set; }
     }
 }

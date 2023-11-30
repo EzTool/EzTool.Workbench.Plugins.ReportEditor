@@ -42,8 +42,10 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
             var objResult = ViewContext.Presenter.OnViewEvent(objRequire);
             var s = objResult.Result;
         }
+
         protected override void OnExecute()
         {
+           
 
             //var objRegion = RegionBundle.GetSingleton().FindByHashCode(ViewContext.HashCode);
             //var objFilter = DocumentAnchorPointFilter.Initial();
