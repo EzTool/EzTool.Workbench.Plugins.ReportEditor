@@ -50,6 +50,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <RichTextBox x:Name="MainBox" BorderThickness="0" FontSize="14"                          
                                              Block.LineHeight="1"
+                                             Padding="{Binding Padding}"
                                              Width="{Binding Width}" 
                                              MinHeight="{Binding Height}" />
                             </StackPanel>

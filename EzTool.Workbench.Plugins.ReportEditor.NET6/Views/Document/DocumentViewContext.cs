@@ -2,6 +2,8 @@
 using EzTool.SDK.WPF.Nerve.MVVM.AbstractObjects;
 using EzTool.SDK.WPF.Nerve.MVVM.Tags;
 
+using System.Windows;
+
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 {
     public class DocumentViewContext :
@@ -16,8 +18,9 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
 
         public string TabTitle { get; set; }
         public double SliderValue { get; set; } = 1;
-        public double Width { get; set; } = 565;
-        public double Height { get; set; } = 800;
+        public double Width { get; set; } = 816;
+        public double Height { get; set; } = 1056;
+        public Thickness Padding { get; set; } = new Thickness(96,96,96,96);
         public double Zoom { get; set; } = 1;
     }
 }
