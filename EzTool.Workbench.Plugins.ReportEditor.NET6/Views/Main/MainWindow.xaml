@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:E="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events"
+        xmlns:M="clr-namespace:EzTool.SDK.WPF.Surface.HumbleObjects;assembly=EzTool.SDK.WPF.Surface.NET6"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main"
         mc:Ignorable="d" WindowState="Maximized"
@@ -13,7 +14,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" x:Name="ViewHead" Background="Gray" Height="60">
             <Grid.Resources>
@@ -43,8 +43,8 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <TabControl Grid.Row="1" x:Name="MainTab" />
-        <Grid Grid.Row="2" Background="Gray">
-        </Grid>
+        <M:MaskLayer x:Name="MaskGridMask" Grid.Row="1" >
+            <TabControl x:Name="MainTab" />
+        </M:MaskLayer>        
     </Grid>
 </Window>

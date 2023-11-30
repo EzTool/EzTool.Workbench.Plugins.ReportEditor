@@ -1,5 +1,6 @@
 ﻿using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
 using EzTool.SDK.WPF.Surface;
+using EzTool.SDK.WPF.Surface.HumbleObjects;
 using EzTool.SDK.WPF.Surface.Utilities;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
@@ -16,11 +17,12 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
 
         public void ShowView()
         {
-            var objView = new MainWindow();            
+            var objView = new MainWindow();
             var objContext = new MainViewContext()
             {
                 Presenter = Presenter ,
-                HashCode = TabRegion.Initial(objView.MainTab)
+                HashCode = TabRegion.Initial(objView.MainTab),
+                MaskLayerHashCode = objView.MaskGridMask.GetHashCode().ToString()
             };
              
             objView.DataContext = objContext;           

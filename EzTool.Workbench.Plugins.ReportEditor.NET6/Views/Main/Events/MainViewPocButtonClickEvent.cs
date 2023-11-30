@@ -28,27 +28,42 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
          BaseViewEvent<MainViewContext>
     {
 
+        public override void PreExecute()
+        {
+            var objRequire = new ViewRequire()
+            {
+                Action = $@"ShowView",
+                Operator = $@"Message",
+                Parameters = new ShowMessageSendData()
+                {
+                    HashCode = ViewContext.MaskLayerHashCode
+                }.Encode().ToString()
+            };
+            var objResult = ViewContext.Presenter.OnViewEvent(objRequire);
+            var s = objResult.Result;
+        }
         protected override void OnExecute()
         {
-            var objRegion = RegionBundle.GetSingleton().FindByHashCode(ViewContext.HashCode);
-            var objFilter = DocumentAnchorPointFilter.Initial();
-            var objAnchorPoint = objRegion?.GetAnchorPoint(objFilter);
-            var objComponent = (IAnchorComponent)objAnchorPoint?.AnchorComponent;
-            var objDocumentView = (DocumentView)objComponent?.Control;
-            var objRichTextBoxInstance = objDocumentView.MainBox;
-            var objFlowDocumentInstance = objRichTextBoxInstance.Document;
 
-            var objRichTextBox = RichTextBoxProxy.Initial(objRichTextBoxInstance);
-            var objFlowDocument = FlowDocumentProxy.Initial(objFlowDocumentInstance);
+            //var objRegion = RegionBundle.GetSingleton().FindByHashCode(ViewContext.HashCode);
+            //var objFilter = DocumentAnchorPointFilter.Initial();
+            //var objAnchorPoint = objRegion?.GetAnchorPoint(objFilter);
+            //var objComponent = (IAnchorComponent)objAnchorPoint?.AnchorComponent;
+            //var objDocumentView = (DocumentView)objComponent?.Control;
+            //var objRichTextBoxInstance = objDocumentView.MainBox;
+            //var objFlowDocumentInstance = objRichTextBoxInstance.Document;
 
-            var objGrid = new Grid() { Width = 130, Height = 50 };
+            //var objRichTextBox = RichTextBoxProxy.Initial(objRichTextBoxInstance);
+            //var objFlowDocument = FlowDocumentProxy.Initial(objFlowDocumentInstance);
 
-            objFlowDocument.Blocks.Append(objGrid);
+            //var objGrid = new Grid() { Width = 130, Height = 50 };
 
-            //var objDocument = objDocumentView.MainBox.Document;
-            //var objRichTextBox = RichTextBoxProxy.Initial(objDocumentView.MainBox);
+            //objFlowDocument.Blocks.Append(objGrid);
 
-            //objRichTextBox.SetRef(EditableTabl());
+            ////var objDocument = objDocumentView.MainBox.Document;
+            ////var objRichTextBox = RichTextBoxProxy.Initial(objDocumentView.MainBox);
+
+            ////objRichTextBox.SetRef(EditableTabl());
         }
 
 

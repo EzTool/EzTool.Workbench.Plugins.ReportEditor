@@ -16,8 +16,10 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
         [SkipNotifyChanged]
         public string HashCode { get; set; }
 
-        public double SliderValue { get; set; }
-        
-    }
+        [SkipNotifyChanged]
+        public string MaskLayerHashCode { get; set; }
 
+        public double SliderValue { get; set; }
+
+    }
 }
