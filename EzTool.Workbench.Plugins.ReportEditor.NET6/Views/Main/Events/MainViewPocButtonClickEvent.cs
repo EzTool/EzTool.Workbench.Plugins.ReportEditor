@@ -37,16 +37,17 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
                 Parameters = new ShowMessageSendData()
                 {
                     HashCode = ViewContext.MaskLayerHashCode,
-                    MessageBoxType = Enums.MessageBoxType.YesNo
+                    MessageBoxType = Enums.MessageBoxType.YesNoCancel 
                 }.Encode().ToString()
             };
             var objResult = ViewContext.Presenter.OnViewEvent(objRequire);
-            var s = objResult.Result;
+
+            MessageBox.Show(objResult.Result);
         }
 
         protected override void OnExecute()
         {
-           
+
 
             //var objRegion = RegionBundle.GetSingleton().FindByHashCode(ViewContext.HashCode);
             //var objFilter = DocumentAnchorPointFilter.Initial();
