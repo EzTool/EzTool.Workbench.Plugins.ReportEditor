@@ -23,10 +23,12 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message
 
         public object Control { get; set; }
         public IAnchorPoint AnchorPoint { get; set; }
-
-
         public void OnComponetCleaned()
         {
+            var objView = (MessageView )Control;
+            var objContext = (MessageViewContext)objView.DataContext;
+
+            DTO = objContext.Result.ToString();
             ViewClosed.Invoke();
         }
 
@@ -44,12 +46,15 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message
             {
                 Presenter = Presenter,
                 MaskHashCode = objSendData.HashCode,
-                IsShowCancelButton = false,
-                IsShowNoButton = false,
-                IsShowYesButton = false,
-                IsShowOKButton = true
+                IsShowCancelButton = objSendData.MessageBoxType == Enums.MessageBoxType.YesNoCancel,
+                IsShowNoButton = objSendData.MessageBoxType != Enums.MessageBoxType.Ok,
+                IsShowYesButton = objSendData.MessageBoxType != Enums.MessageBoxType.Ok,
+                IsShowOKButton = objSendData.MessageBoxType == Enums.MessageBoxType.Ok
             };
-            var objView = new MessageView() { DataContext = objContext };
+            var objView = new MessageView()
+            {
+                DataContext = objContext
+            };
 
             Control = objView;
             RegionBundle.GetSingleton()?

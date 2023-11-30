@@ -7,7 +7,7 @@
              xmlns:E="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message.Events"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:MessageViewContext}"
-             MinWidth="650" MinHeight="250"
+             MinWidth="650" MinHeight="250" Background="White"
              d:DesignHeight="250" d:DesignWidth="120">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -22,26 +22,29 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <TextBlock Text="Message" />
+        <Grid Grid.Row="0" Background="Gray" Height="35">
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0"
+                        HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="Message" />
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="2" Background="LightGray">
-            <StackPanel Orientation="Vertical" Margin="3">
+            <StackPanel Orientation="Vertical" Margin="10">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Width="125" Height="35" Content="確定" 
+                    <Button Width="125" Height="35" Content="確定" Margin="3,0,3,0"
                             Visibility="{Binding IsShowOKButton, Converter={StaticResource BoolToVis}}"
                             Command="{Binding RelayCommand}" 
                             CommandParameter="{StaticResource OkButtonClickEvent}"/>
-                    <Button Width="125" Height="35" Content="Yes"
+                    <Button Width="125" Height="35" Content="Yes" Margin="3,0,3,0"
                             Visibility="{Binding IsShowYesButton, Converter={StaticResource BoolToVis}}"
                             Command="{Binding RelayCommand}" 
                             CommandParameter="{StaticResource YesButtonClickEvent}"/>
-                    <Button Width="125" Height="35" Content="No"
+                    <Button Width="125" Height="35" Content="No" Margin="3,0,3,0"
                             Visibility="{Binding IsShowNoButton, Converter={StaticResource BoolToVis}}"
                             Command="{Binding RelayCommand}" 
                             CommandParameter="{StaticResource NoButtonClickEvent}"/>
-                    <Button Width="125" Height="35" Content="Cancel"
+                    <Button Width="125" Height="35" Content="Cancel" Margin="3,0,3,0"
                             Visibility="{Binding IsShowCancelButton, Converter={StaticResource BoolToVis}}"
                             Command="{Binding RelayCommand}" 
                             CommandParameter="{StaticResource CancelButtonClickEvent}"/>

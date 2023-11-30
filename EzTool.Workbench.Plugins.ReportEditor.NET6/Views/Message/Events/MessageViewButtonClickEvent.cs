@@ -11,6 +11,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message.Events
 
         protected override void OnExecute()
         {
+            ViewContext.Result = ButtonType;
             RegionBundle.GetSingleton().FindByHashCode(ViewContext.MaskHashCode).GetAnchorPoint().Clean();
         }
     }

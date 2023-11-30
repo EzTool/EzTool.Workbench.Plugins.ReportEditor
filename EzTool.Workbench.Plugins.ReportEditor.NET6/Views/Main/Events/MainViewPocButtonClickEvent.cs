@@ -36,7 +36,8 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main.Events
                 Operator = $@"Message",
                 Parameters = new ShowMessageSendData()
                 {
-                    HashCode = ViewContext.MaskLayerHashCode
+                    HashCode = ViewContext.MaskLayerHashCode,
+                    MessageBoxType = Enums.MessageBoxType.YesNo
                 }.Encode().ToString()
             };
             var objResult = ViewContext.Presenter.OnViewEvent(objRequire);
