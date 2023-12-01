@@ -16,7 +16,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message
 {
 
     public class MessageViewModel :
-        IDialogView, IAnchorComponent
+        IView, IAnchorComponent
     {
 
         #region -- 介面實做 ( Implements ) - [IAnchorComponent] --
@@ -29,7 +29,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message
             var objContext = (MessageViewContext)objView.DataContext;
 
             DTO = objContext.Result.ToString();
-            ViewClosed.Invoke();
+            ViewClosed?.Invoke();
         }
 
         #endregion

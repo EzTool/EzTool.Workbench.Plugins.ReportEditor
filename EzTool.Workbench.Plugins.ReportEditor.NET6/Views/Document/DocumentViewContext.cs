@@ -24,5 +24,6 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
         public double Height { get; set; } = 1056;
         public Thickness Padding { get; set; } = new Thickness(96,96,96,96);
         public double Zoom { get; set; } = 1;
+        public bool IsShowMask { get; set; }
     }
 }

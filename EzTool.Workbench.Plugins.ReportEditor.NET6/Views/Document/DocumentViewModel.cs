@@ -3,16 +3,12 @@ using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Extensions;
-using EzTool.Workbench.Plugins.ReportEditor.NET6.Utilities.View;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
 
 using Microsoft.Win32;
 
-using System;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
@@ -90,7 +86,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
             RegionBundle.GetSingleton()?
                 .FindByHashCode(objSendData.HashCode)?
                 .GetAnchorPoint(objTabTitle)?
-                .Mount(this);
+                .Mount(this);            
         }
 
         #endregion

@@ -17,7 +17,7 @@
                 CommandParameter="DocumentLoadedEvent" />
         </B:EventTrigger>
     </B:Interaction.Triggers>
-    <Surface:MaskLayer Name="MainMask">
+    <Surface:MaskLayer Name="MainMask" IsShowMask="{Binding IsShowMask, Mode=TwoWay}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
