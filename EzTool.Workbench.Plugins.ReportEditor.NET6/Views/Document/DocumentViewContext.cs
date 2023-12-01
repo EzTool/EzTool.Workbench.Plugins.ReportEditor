@@ -14,6 +14,8 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
         [SkipNotifyChanged]
         public string ParentHashCode { get; set; }
         [SkipNotifyChanged]
+        public string MaskHashCode { get; set; }
+        [SkipNotifyChanged]
         public string FilePath { get; set; }
 
         public string TabTitle { get; set; }

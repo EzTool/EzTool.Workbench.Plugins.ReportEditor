@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor.TableEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:E="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor.Events"
+             xmlns:local="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor"
+             mc:Ignorable="d"              
+             MinHeight="450" MinWidth="800" Background="White"
+             d:DataContext="{d:DesignInstance Type=local:TableEditorViewContext}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <E:TableEditorCloseEvent ResultType="Confirm" x:Key="Confirm" />
+        <E:TableEditorCloseEvent ResultType="Cancel" x:Key="Cancel" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="2" Background="LightGray">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Width="125" Height="35" Content="確定" Margin="3,0,3,0"                            
+                            Command="{Binding RelayCommand}" 
+                            CommandParameter="{StaticResource Confirm}"/>
+                    <Button Width="125" Height="35" Content="放棄" Margin="3,0,3,0"
+                            Command="{Binding RelayCommand}" 
+                            CommandParameter="{StaticResource Cancel}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

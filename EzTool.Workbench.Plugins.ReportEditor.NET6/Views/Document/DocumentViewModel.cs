@@ -68,11 +68,12 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
                 ParentHashCode = objSendData.HashCode,
                 Presenter = Presenter,
                 FilePath = objSendData.FilePath,
-                TabTitle = $@"新建檔案"
+                TabTitle = $@"新建檔案"                
             };
             var objView = new DocumentView() { DataContext = objContext };
             var objTabTitle = objContext.GetTabTitleControl();
 
+            objContext.MaskHashCode = objView.MainMask.GetHashCode().ToString();
             if (string.IsNullOrEmpty(objSendData.FilePath) == false)
             {
                 var objDocumentView = objView;

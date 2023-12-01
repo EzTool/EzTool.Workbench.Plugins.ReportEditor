@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Surface="clr-namespace:EzTool.SDK.WPF.Surface.HumbleObjects;assembly=EzTool.SDK.WPF.Surface.NET6"
              xmlns:B="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:VU="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Utilities.View"
              xmlns:local="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document"
@@ -16,64 +17,74 @@
                 CommandParameter="DocumentLoadedEvent" />
         </B:EventTrigger>
     </B:Interaction.Triggers>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="1" >
-            <Grid.Resources>
-                <VU:MultiBindingMultiplier x:Key="MultiBindingMultiplier" />
-            </Grid.Resources>
-            <Grid x:Name="MainViewBoxContainer"                   
-                  Background="#FF565555" >
-                <ScrollViewer  HorizontalScrollBarVisibility="Auto"
+    <Surface:MaskLayer Name="MainMask">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" >
+                <Grid.Resources>
+                    <VU:MultiBindingMultiplier x:Key="MultiBindingMultiplier" />
+                </Grid.Resources>
+                <Grid x:Name="MainViewBoxContainer" Background="#FF565555" >
+                    <Grid.Resources>
+                        <ContextMenu x:Key="DocumentContextMenu">
+                            <MenuItem Header="插入表格" 
+                                      Click="MenuItem_Click" 
+                                      Command="{Binding RelayCommand}"
+                                      CommandParameter="DocumentInsertTableEvent"/>
+                        </ContextMenu>
+                    </Grid.Resources>
+                    <ScrollViewer  HorizontalScrollBarVisibility="Auto"
                                VerticalScrollBarVisibility="Auto" 
                                PanningMode="HorizontalFirst"
                                PanningRatio="10">
-                    <StackPanel x:Name="PageBundlePanel" Orientation="Vertical" 
+                        <StackPanel x:Name="PageBundlePanel" Orientation="Vertical" 
                                 HorizontalAlignment="Center" Margin="10" >
-                        <Viewbox>
-                            <Viewbox.Width>
-                                <MultiBinding Converter="{StaticResource MultiBindingMultiplier}">
-                                    <Binding Path="Width" />
-                                    <Binding Path="Zoom"/>
-                                </MultiBinding>
-                            </Viewbox.Width>
-                            <Viewbox.MinHeight>
-                                <MultiBinding Converter="{StaticResource MultiBindingMultiplier}">
-                                    <Binding Path="Height"/>
-                                    <Binding Path="Zoom"/>
-                                </MultiBinding>
-                            </Viewbox.MinHeight>
-                            <StackPanel Orientation="Horizontal">
-                                <RichTextBox x:Name="MainBox" BorderThickness="0" FontSize="14"                          
+                            <Viewbox>
+                                <Viewbox.Width>
+                                    <MultiBinding Converter="{StaticResource MultiBindingMultiplier}">
+                                        <Binding Path="Width" />
+                                        <Binding Path="Zoom"/>
+                                    </MultiBinding>
+                                </Viewbox.Width>
+                                <Viewbox.MinHeight>
+                                    <MultiBinding Converter="{StaticResource MultiBindingMultiplier}">
+                                        <Binding Path="Height"/>
+                                        <Binding Path="Zoom"/>
+                                    </MultiBinding>
+                                </Viewbox.MinHeight>
+                                <StackPanel Orientation="Horizontal">
+                                    <RichTextBox x:Name="MainBox" BorderThickness="0" FontSize="14"                          
                                              Block.LineHeight="1"
+                                             ContextMenu="{StaticResource DocumentContextMenu}"
                                              Padding="{Binding Padding}"
                                              Width="{Binding Width}" 
                                              MinHeight="{Binding Height}" />
-                            </StackPanel>
-                        </Viewbox>
-                    </StackPanel>
-                </ScrollViewer>
+                                </StackPanel>
+                            </Viewbox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </Grid>
-        </Grid>
-        <Grid Grid.Row="2" Background="Gray">           
-            <StackPanel Orientation="Horizontal" Height="24" HorizontalAlignment="Right" Margin="3">
-                <Slider Width="180" Value="{Binding SliderValue}" 
+            <Grid Grid.Row="2" Background="Gray">
+                <StackPanel Orientation="Horizontal" Height="24" HorizontalAlignment="Right" Margin="3">
+                    <Slider Width="180" Value="{Binding SliderValue}" 
                         Maximum="1.8" Minimum="0.2" 
                         TickPlacement="BottomRight" 
                         TickFrequency="0.2" >
-                    <B:Interaction.Triggers>
-                        <B:EventTrigger EventName="ValueChanged" >
-                            <B:InvokeCommandAction 
+                        <B:Interaction.Triggers>
+                            <B:EventTrigger EventName="ValueChanged" >
+                                <B:InvokeCommandAction 
                                 Command="{Binding RelayCommand}" 
                                 CommandParameter="DocumentViewSliderValueChangedEvent" />
-                        </B:EventTrigger>
-                    </B:Interaction.Triggers>
-                </Slider>
-            </StackPanel>
+                            </B:EventTrigger>
+                        </B:Interaction.Triggers>
+                    </Slider>
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Surface:MaskLayer>
 </UserControl>
