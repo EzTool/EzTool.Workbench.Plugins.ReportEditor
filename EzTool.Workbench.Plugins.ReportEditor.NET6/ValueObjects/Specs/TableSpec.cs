@@ -5,5 +5,6 @@
     /// </summary>
     public class TableSpec
     {
+        public TableRowSpecBundle Rows { get; set; }
     }
 }
