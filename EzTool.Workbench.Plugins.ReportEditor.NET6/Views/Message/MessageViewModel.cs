@@ -16,7 +16,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message
 {
 
     public class MessageViewModel :
-        IView, IAnchorComponent
+        IDialogView, IAnchorComponent
     {
 
         #region -- 介面實做 ( Implements ) - [IAnchorComponent] --

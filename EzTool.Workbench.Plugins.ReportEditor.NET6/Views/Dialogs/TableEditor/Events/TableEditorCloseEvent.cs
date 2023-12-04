@@ -4,7 +4,7 @@ using EzTool.Workbench.Plugins.ReportEditor.NET6.Enums;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor.Events
 {
-    public  class TableEditorCloseEvent:
+    public class TableEditorCloseEvent :
         BaseViewEvent<TableEditorViewContext>
     {
         public DialogResultType ResultType { get; set; }
@@ -12,7 +12,10 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor.E
         protected override void OnExecute()
         {
             ViewContext.ResultType = ResultType;
-            RegionBundle.GetAnchorPoint(ViewContext.ParentHashCode).Clean();
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                RegionBundle.GetAnchorPoint(ViewContext.ParentHashCode).Clean();
+            });
         }
     }
 }

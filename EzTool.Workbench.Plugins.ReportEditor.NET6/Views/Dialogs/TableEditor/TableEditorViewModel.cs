@@ -6,6 +6,10 @@ using System;
 using EzTool.SDK.WPF.Nerve.MVVM.AbstractObjects;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Enums;
 using EzTool.SDK.WPF.Nerve.MVVM.Tags;
+using EzTool.SDK.Infra.Enigma.Extension;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.ResultDataObjects;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.Specs;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor
 {
@@ -21,7 +25,14 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor
 
         public void OnComponetCleaned()
         {
-            DTO = ((TableEditorViewContext)((TableEditorView)Control).DataContext).ResultType.ToString();
+            var nResult = ((TableEditorViewContext)((TableEditorView)Control).DataContext).ResultType;
+            var objResultData = new ShowTableEditorResultData()
+            {
+                IsModify = nResult == DialogResultType.Confirm,
+                Table = new TableSpec()
+            };
+
+            DTO = objResultData.Encode().ToString();
             ViewClosed?.Invoke();
         }
 
@@ -35,10 +46,11 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor
 
         public void ShowView()
         {
+            var objSendData = DTO.Decode<ShowTableEditorSendData>();
             var objContext = new TableEditorViewContext()
             {
                 Presenter = Presenter,
-                ParentHashCode = DTO
+                ParentHashCode = objSendData.HashCode
             };
             var objView = new TableEditorView()
             {
@@ -46,7 +58,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor
             };
 
             Control = objView;
-            RegionBundle.GetAnchorPoint(DTO).Mount(this);
+            RegionBundle.GetAnchorPoint(objSendData.HashCode).Mount(this);
         }
 
         #endregion

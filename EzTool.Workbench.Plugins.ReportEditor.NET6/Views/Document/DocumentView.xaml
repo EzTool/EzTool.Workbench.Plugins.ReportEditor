@@ -17,7 +17,7 @@
                 CommandParameter="DocumentLoadedEvent" />
         </B:EventTrigger>
     </B:Interaction.Triggers>
-    <Surface:MaskLayer Name="MainMask" IsShowMask="{Binding IsShowMask, Mode=TwoWay}">
+    <Surface:MaskLayer Name="MainMask" IsKeepShowMask="True" IsShowMask="{Binding IsShowMask, Mode=TwoWay}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -56,13 +56,20 @@
                                         <Binding Path="Zoom"/>
                                     </MultiBinding>
                                 </Viewbox.MinHeight>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal">                                    
                                     <RichTextBox x:Name="MainBox" BorderThickness="0" FontSize="14"                          
-                                             Block.LineHeight="1"
+                                             Block.LineHeight="1" 
                                              ContextMenu="{StaticResource DocumentContextMenu}"
                                              Padding="{Binding Padding}"
                                              Width="{Binding Width}" 
-                                             MinHeight="{Binding Height}" />
+                                             MinHeight="{Binding Height}" >                                        
+                                        <B:Interaction.Triggers>
+                                            <B:EventTrigger EventName="SelectionChanged" >
+                                                <B:InvokeCommandAction Command="{Binding RelayCommand}"
+                                                                       CommandParameter="DocumentSelectionChangedEvent" />
+                                            </B:EventTrigger>
+                                        </B:Interaction.Triggers>                                       
+                                    </RichTextBox>
                                 </StackPanel>
                             </Viewbox>
                         </StackPanel>

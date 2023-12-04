@@ -3,6 +3,7 @@ using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
 using EzTool.SDK.WPF.Surface;
 using EzTool.SDK.WPF.Surface.Interfaces;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Extensions;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.SendDataObjects;
 
 using Microsoft.Win32;
@@ -68,7 +69,9 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
             };
             var objView = new DocumentView() { DataContext = objContext };
             var objTabTitle = objContext.GetTabTitleControl();
+            var objRichTextBox = RichTextBoxProxy.Initial(objView.MainBox);
 
+            objContext.RIchTextBox = objRichTextBox;
             objContext.MaskHashCode = objView.MainMask.GetHashCode().ToString();
             if (string.IsNullOrEmpty(objSendData.FilePath) == false)
             {

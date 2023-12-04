@@ -1,9 +1,11 @@
 ﻿using EzTool.SDK.WPF.Nerve.MVVM.AbstractObjects;
+using EzTool.SDK.WPF.Nerve.MVVM.Tags;
 using EzTool.SDK.WPF.Surface;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Enums;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Message.Events
 {
+    [RunOnMainThread]
     public class MessageViewButtonClickEvent:
         BaseViewEvent<MessageViewContext>
     {

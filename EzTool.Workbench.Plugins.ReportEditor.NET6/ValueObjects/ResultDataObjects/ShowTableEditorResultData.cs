@@ -2,9 +2,10 @@
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.ResultDataObjects
 {
-    public class ShowTableCreatorResultData
+    public class ShowTableEditorResultData
     {
-       public TableSpec Table { get; set; }
+        public bool IsModify { get; set; }
+        public TableSpec Table { get; set; }
     }
 
 }
