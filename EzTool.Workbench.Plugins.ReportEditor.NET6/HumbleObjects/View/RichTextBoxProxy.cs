@@ -51,7 +51,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
         {
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
-                Insert(TableProxy.Parse(pi_objTable));
+                //Insert(TableProxy.Parse(pi_objTable));
             });
         }
 
@@ -64,9 +64,10 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 
             var objRow = objTableCell != null ? (TableRow)objTableCell.Parent : null;
             var objRowGroup = objRow != null ? (TableRowGroup)objRow.Parent : null;
-            var objTable = objRowGroup != null ? (Table)objRowGroup.Parent : null;           
+            var objTable = objRowGroup != null ? (Table)objRowGroup.Parent : null;
 
-            return TableProxy.Parse(objTable);
+            //return TableProxy.Parse(objTable);
+            return new TableSpec();
         }
 
         public bool IsSelectedTable

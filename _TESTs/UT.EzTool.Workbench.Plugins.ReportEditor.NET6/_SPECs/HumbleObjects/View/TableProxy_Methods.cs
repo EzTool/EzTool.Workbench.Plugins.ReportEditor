@@ -14,6 +14,7 @@ namespace UT.EzTool.Workbench.Plugins.ReportEditor.NET6._SPECs.HumbleObjects.Vie
     [TestClass]
     public class TableProxy_Methods
     {
+
         [TestMethod]
         public void S01()
         {
@@ -36,6 +37,13 @@ namespace UT.EzTool.Workbench.Plugins.ReportEditor.NET6._SPECs.HumbleObjects.Vie
             Assert.AreEqual(2, objActualPadding.Top);
             Assert.AreEqual(3, objActualPadding.Right);
             Assert.AreEqual(4, objActualPadding.Bottom);
+        }
+
+        [TestMethod]
+        public void S02()
+        {
+            var objTableSpec = new TableSpec();
+            
         }
     }
 }

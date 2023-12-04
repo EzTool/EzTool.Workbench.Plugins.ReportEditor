@@ -1,29 +1,49 @@
 ﻿using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.Specs;
 
 using System;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Media;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 {
-    public class TableProxy
+    public class TableProxy :
+        ITableProxy
     {
-        public static Table Parse(TableSpec pi_objTableSpec)
+        #region -- 變數宣告 ( Declarations ) --   
+
+        private Table l_objTable;
+
+        #endregion
+
+        #region -- 建構/解構 ( Constructors/Destructor ) --
+
+        private TableProxy(Table pi_objTable)
         {
-            var objTable = new Table();
-            var objRowGroup = new TableRowGroup();
-            
-            objTable.RowGroups.Add(objRowGroup);
-            objTable.Name = $@"BalanceSheet";
-            objTable.Tag = DateTime.Now;
-            return objTable;
+            this.l_objTable = pi_objTable;
         }
 
-        public static TableSpec Parse(Table pi_objTable)
-        {            
+        #endregion
+
+        #region -- 靜態方法 (Shared Method ) --
+
+        public static ITableProxy Initial(Table pi_objTable)
+        {
+            return new TableProxy(pi_objTable);
+        }
+
+        #endregion
+
+        #region -- 介面實做 ( Implements ) - [ITableProxy] --
+        public TableSpec ParseAsSpec()
+        {
             return new TableSpec();
         }
+
+        #endregion
+
+    }
+
+    public interface ITableProxy
+    {
+        TableSpec ParseAsSpec();
     }
 }
