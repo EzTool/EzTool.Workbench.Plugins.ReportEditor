@@ -43,7 +43,7 @@ namespace UT.EzTool.Workbench.Plugins.ReportEditor.NET6._SPECs.HumbleObjects.Vie
         public void S02()
         {
             var objTableSpec = new TableSpec();
-            
+            var objColor = objTableSpec.RowGroups[0].Cells[0].BordColor;
         }
     }
 }
