@@ -1,4 +1,7 @@
-﻿using System;
+﻿using EzTool.Workbench.Plugins.ReportEditor.NET6.Extensions;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.Specs;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +15,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
     {
         #region -- 變數宣告 ( Declarations ) --   
 
-        private TableCellCollection pi_objCells;
+        private TableCellCollection l_objCells;
 
         #endregion
 
@@ -20,7 +23,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 
         public TableCellProxyBundle(TableCellCollection pi_objCells)
         {
-            this.pi_objCells = pi_objCells;
+            this.l_objCells = pi_objCells;
         }
 
         #endregion
@@ -36,9 +39,15 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 
         #region -- 介面實做 ( Implements ) - [ITableCellProxyBundle] --
 
-        public List<TableCellProxy> Cells
+        public TableCellSpecBundle ParseAsSpec()
         {
-            get { return new List<TableCellProxy>(); }
+            var objCells = new List<TableCellSpec>();
+
+            foreach (TableCell objCell in l_objCells)
+            {
+                objCells.Add(TableCellProxy.Initial(objCell).ParseAsSpec());
+            }
+            return new TableCellSpecBundle() { Cells = objCells};
         }
 
         #endregion
@@ -46,6 +55,6 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 
     public interface ITableCellProxyBundle
     {
-        List<TableCellProxy> Cells { get; }
+        List<TableCellSpec> ParseAsSpec();
     }
 }
