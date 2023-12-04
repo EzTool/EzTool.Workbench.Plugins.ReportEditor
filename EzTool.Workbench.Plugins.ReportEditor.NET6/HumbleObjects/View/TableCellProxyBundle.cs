@@ -55,6 +55,6 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 
     public interface ITableCellProxyBundle
     {
-        List<TableCellSpec> ParseAsSpec();
+        TableCellSpecBundle ParseAsSpec();
     }
 }
