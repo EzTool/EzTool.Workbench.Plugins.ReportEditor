@@ -3,15 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:B="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:EzTool.Workbench.Plugins.ReportEditor.NET6.Views.SheetEditor"
-             mc:Ignorable="d" Background="LightGray"
-             MinHeight="200" MinWidth="500"
+             mc:Ignorable="d"              
+             MinHeight="200" MinWidth="500"             
              d:DesignHeight="200" d:DesignWidth="500">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <RichTextBox Width="300" Height="130" IsDocumentEnabled="True" >
+                    <FlowDocument>
+                        <Table BorderBrush="Black" BorderThickness="1" CellSpacing="0">
+                            <Table.Columns>
+                                <TableColumn Width="{Binding Width}" />
+                            </Table.Columns>
+                            <TableRowGroup>
+                                <TableRow>
+                                    <TableCell Padding="0" BorderThickness="1" BorderBrush="Black" >                                       
+                                        <Paragraph>
+                                            <Run Text="{Binding Cell11, Mode=TwoWay}" DataContextChanged="Run_DataContextChanged" />
+                                        </Paragraph>
+                                    </TableCell>
+                                    <TableCell Padding="0" BorderThickness="1" BorderBrush="Black" />
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell Padding="0" BorderThickness="1" BorderBrush="Black" >
+                                        <Paragraph>
+                                            <Run Text="{Binding Cell12, Mode=TwoWay}" />
+                                        </Paragraph>
+                                    </TableCell>
+                                    <TableCell Padding="0" BorderThickness="1" BorderBrush="Black" />
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell Padding="0" BorderThickness="1" BorderBrush="Black" >
+                                        <Paragraph>
+                                            <Run Text="{Binding Cell13, Mode=TwoWay}" />
+                                        </Paragraph>
+                                    </TableCell>
+                                    <TableCell Padding="0" BorderThickness="1" BorderBrush="Black" />
+                                </TableRow>
+                            </TableRowGroup>
+                        </Table>
+                    </FlowDocument>
+                </RichTextBox>
                 <Button Width="124" Height="25" 
-                        Command="{Binding RelayCommand}" CommandParameter="ClickButtonEvent" />
+                        Command="{Binding RelayCommand}" 
+                        CommandParameter="ValueChangedEvent" />
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -24,5 +24,10 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.SheetEditor
         {
             InitializeComponent();
         }
+
+        private void Run_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
     }
 }
