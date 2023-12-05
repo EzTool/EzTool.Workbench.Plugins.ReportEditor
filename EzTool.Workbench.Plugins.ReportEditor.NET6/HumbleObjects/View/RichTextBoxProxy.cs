@@ -12,6 +12,7 @@ using System.Windows.Automation.Text;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.Specs;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.Extensions;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 {
@@ -51,7 +52,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
         {
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
-                //Insert(TableProxy.Parse(pi_objTable));
+                Insert(pi_objTable.Parse());
             });
         }
 

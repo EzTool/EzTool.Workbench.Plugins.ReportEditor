@@ -22,21 +22,21 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document.Events
 
         protected override void OnExecute()
         {
-            if (ViewContext.RIchTextBox.IsSelectedTable)
-            {
-                var objTableSpec = ViewContext.RIchTextBox.GetSelectedTableSpec();
-                var objRequire = new ViewRequire()
-                {
-                    Action = $@"ShowView",
-                    Operator = $@"TableEditor",
-                    Parameters = new ShowTableEditorSendData()
-                    {
-                        HashCode = ViewContext.MaskHashCode,
-                        Table = objTableSpec
-                    }.Encode().ToString()
-                };
-                var objResponse = ViewContext.Presenter.OnViewEvent(objRequire);
-            }
+            //if (ViewContext.RIchTextBox.IsSelectedTable)
+            //{
+            //    var objTableSpec = ViewContext.RIchTextBox.GetSelectedTableSpec();
+            //    var objRequire = new ViewRequire()
+            //    {
+            //        Action = $@"ShowView",
+            //        Operator = $@"TableEditor",
+            //        Parameters = new ShowTableEditorSendData()
+            //        {
+            //            HashCode = ViewContext.MaskHashCode,
+            //            Table = objTableSpec
+            //        }.Encode().ToString()
+            //    };
+            //    var objResponse = ViewContext.Presenter.OnViewEvent(objRequire);
+            //}
         }
 
         public override void DisplayResponse()

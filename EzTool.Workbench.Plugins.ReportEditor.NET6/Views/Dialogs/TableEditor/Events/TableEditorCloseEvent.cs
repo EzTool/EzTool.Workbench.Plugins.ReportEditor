@@ -7,6 +7,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Dialogs.TableEditor.E
     public class TableEditorCloseEvent :
         BaseViewEvent<TableEditorViewContext>
     {
+
         public DialogResultType ResultType { get; set; }
 
         protected override void OnExecute()

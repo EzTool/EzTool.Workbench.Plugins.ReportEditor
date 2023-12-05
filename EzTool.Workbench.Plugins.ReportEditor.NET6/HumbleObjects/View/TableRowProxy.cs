@@ -31,7 +31,6 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 
         #region -- 介面實做 ( Implements ) - [ITableRowProxy] --
 
-        public ITableCellProxyBundle Cells { get { return TableCellProxyBundle.Initial(l_objTableRow.Cells); } }
 
         #endregion
 
@@ -39,6 +38,5 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 
     public interface ITableRowProxy
     {
-        ITableCellProxyBundle Cells { get; }
     }
 }
