@@ -13,6 +13,10 @@ using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.ValueObjects.Specs;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Extensions;
+using EzTool.SDK.WPF.Surface.HumbleObjects.AnchorPoints;
+using EzTool.SDK.WPF.Surface;
+using EzTool.SDK.WPF.Surface.Utilities;
+using EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
 {
@@ -47,6 +51,23 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
         #endregion
 
         #region -- 介面實做 ( Implements ) - [IRichTextBoxProxy] --
+
+        public string GetAnchorPoint()
+        {
+            var sReturnHashCode = string.Empty;
+
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                var objGrid = new Grid();              
+                var objInlineUIContainer = new InlineUIContainer(objGrid);
+
+                objInlineUIContainer.ForceCursor = true;
+                sReturnHashCode = GridRegion.Initial(objGrid);
+
+                Insert(objInlineUIContainer);
+            });
+            return sReturnHashCode;
+        }
 
         public void Insert(TableSpec pi_objTable)
         {
@@ -160,6 +181,48 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
             }
         }
 
+        private void Insert(InlineUIContainer objTable)
+        {
+            var objCaretPosition = l_objRichTextBox.CaretPosition;
+            var pi_objTable = new Paragraph(objTable);            
+
+            if (objCaretPosition?.Paragraph?.Parent is TableCell objTableCell)
+            {
+                //處理表格內，已有文字
+                objTableCell.Blocks.InsertBefore(objCaretPosition?.Paragraph, pi_objTable);
+            }
+            else if (objCaretPosition?.Paragraph?.Parent is ListItem objListItem)
+            {
+                //處理清單項，已有文字
+                objListItem.Blocks.InsertBefore(objCaretPosition?.Paragraph, pi_objTable);
+            }
+            else if (objCaretPosition?.Paragraph != null)
+            {
+                //處理有文字
+                l_objRichTextBox.Document.Blocks.InsertBefore(objCaretPosition.Paragraph, pi_objTable);
+            }
+            else if (objCaretPosition.Parent is TableCell objEmptyTableCell)
+            {
+                //表格內
+                objEmptyTableCell.Blocks.Add(pi_objTable);
+            }
+            else if (objCaretPosition.Parent is TableRow objTableRow)
+            {
+                //在表格段落的後面的外邊
+                var objTableOfCarePosition = ((TableRowGroup)objTableRow.Parent).Parent;
+
+                if (objTableOfCarePosition is Block objTableBlock)
+                {
+                    l_objRichTextBox.Document.Blocks.InsertAfter(objTableBlock, pi_objTable);
+                }
+            }
+            else if (objCaretPosition.Parent is FlowDocument objDocument)
+            {
+                //在表格段落的最前面的外邊
+                l_objRichTextBox.Document.Blocks.InsertBefore(l_objRichTextBox.Document.Blocks.FirstBlock, pi_objTable);
+            }
+        }
+
         #endregion
 
     }
@@ -173,6 +236,13 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.HumbleObjects.View
         void Append(IBitMapImageProxy pi_objImage);
         void Insert(TableSpec table);
         TableSpec GetSelectedTableSpec();
+
+        /// <summary>
+        /// 取得錨點物件的索引值
+        /// </summary>
+        /// <returns></returns>
+        string GetAnchorPoint();
+
         bool IsSelectedTable { get; }
     }
 }

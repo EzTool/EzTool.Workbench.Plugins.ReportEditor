@@ -19,7 +19,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
         [SkipNotifyChanged]
         public string FilePath { get; set; }
         [SkipNotifyChanged]
-        public IRichTextBoxProxy RIchTextBox { get; set; }
+        public IRichTextBoxProxy RichTextBox { get; set; }
 
         public string TabTitle { get; set; }
         public double SliderValue { get; set; } = 1;

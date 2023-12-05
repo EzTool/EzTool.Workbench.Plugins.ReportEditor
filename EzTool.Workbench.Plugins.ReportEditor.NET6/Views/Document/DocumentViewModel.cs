@@ -71,7 +71,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document
             var objTabTitle = objContext.GetTabTitleControl();
             var objRichTextBox = RichTextBoxProxy.Initial(objView.MainBox);
 
-            objContext.RIchTextBox = objRichTextBox;
+            objContext.RichTextBox = objRichTextBox;
             objContext.MaskHashCode = objView.MainMask.GetHashCode().ToString();
             if (string.IsNullOrEmpty(objSendData.FilePath) == false)
             {

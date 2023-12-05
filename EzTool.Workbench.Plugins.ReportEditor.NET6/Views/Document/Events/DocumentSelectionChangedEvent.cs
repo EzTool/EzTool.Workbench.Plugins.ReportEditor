@@ -17,7 +17,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document.Events
     {
         public override void PreExecute()
         {
-            ViewContext.IsShowMask = ViewContext.RIchTextBox.IsSelectedTable;
+            ViewContext.IsShowMask = ViewContext.RichTextBox.IsSelectedTable;
         }
 
         protected override void OnExecute()

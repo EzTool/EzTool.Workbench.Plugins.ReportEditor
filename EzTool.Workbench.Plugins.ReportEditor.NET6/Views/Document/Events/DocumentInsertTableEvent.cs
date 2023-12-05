@@ -27,13 +27,29 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document.Events
 
             if (objResult.IsModify)
             {
-                ViewContext.RIchTextBox.Insert(objResult.Table);
+                //ViewContext.RIchTextBox.Insert(objResult.Table);
+                var sHashCode = ViewContext.RichTextBox.GetAnchorPoint();
+                ShowSheetEditor(sHashCode);
             }
         }
 
         public override void DisplayResponse()
         {
             ViewContext.IsShowMask = false;
+        }
+
+        private void ShowSheetEditor(string pi_sHashCode)
+        {
+            var objRequire = new ViewRequire()
+            {
+                Action = $@"ShowView",
+                Operator = $@"SheetEditor",
+                Parameters = new ShowSheetEditorSendData()
+                {
+                    RegiontHashCode = pi_sHashCode 
+                }.Encode().ToString()
+            };
+            var objResponse = ViewContext.Presenter.OnViewEvent(objRequire);
         }
 
         private IModelResponse ShowTableEditor()
@@ -53,5 +69,6 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document.Events
 
             return objResponse;
         }
+
     }
 }

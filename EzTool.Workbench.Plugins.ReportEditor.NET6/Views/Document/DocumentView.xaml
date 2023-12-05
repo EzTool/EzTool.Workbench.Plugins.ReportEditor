@@ -58,7 +58,7 @@
                                 </Viewbox.MinHeight>
                                 <StackPanel Orientation="Horizontal">                                    
                                     <RichTextBox x:Name="MainBox" BorderThickness="0" FontSize="14"                          
-                                             Block.LineHeight="1" 
+                                             Block.LineHeight="1" IsDocumentEnabled ="True"
                                              ContextMenu="{StaticResource DocumentContextMenu}"
                                              Padding="{Binding Padding}"
                                              Width="{Binding Width}" 
