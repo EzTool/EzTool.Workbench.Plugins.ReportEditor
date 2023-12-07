@@ -1,6 +1,8 @@
 ﻿using EzTool.SDK.WPF.Nerve.MVP.Interfaces;
 using EzTool.SDK.WPF.Nerve.MVVM.AbstractObjects;
 using EzTool.SDK.WPF.Nerve.MVVM.Tags;
+using EzTool.SDK.WPF.Surface;
+using EzTool.SDK.WPF.Surface.Interfaces;
 
 using System.Windows.Controls;
 
@@ -10,7 +12,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
         BaseViewContext
     {
 
-        [SkipNotifyChanged] 
+        [SkipNotifyChanged]
         public IPresenter Presenter { get; set; }
 
         [SkipNotifyChanged]
@@ -18,6 +20,15 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
 
         [SkipNotifyChanged]
         public string MaskLayerHashCode { get; set; }
+
+        [SkipNotifyChanged]
+        public IAnchorRegion MainAnchorRegion
+        {
+            get
+            {
+                return RegionBundle.GetSingleton().FindByHashCode(HashCode);
+            }
+        }
 
         public double SliderValue { get; set; }
 

@@ -23,8 +23,8 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Main
                 Presenter = Presenter ,
                 HashCode = TabRegion.Initial(objView.MainTab),
                 MaskLayerHashCode = objView.MaskGridMask.GetHashCode().ToString()
-            };
-             
+            };            
+            
             objView.DataContext = objContext;           
             objView.ShowDialog();
         }
