@@ -33,7 +33,13 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Utilities.View
 
         public bool IsTarget(IAnchorPoint pi_objAnchorPoint)
         {
-            return pi_objAnchorPoint is ITabItemAbility objTabItem ? objTabItem.IsSelected : false;
+            var bReturn = false;
+
+            System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                bReturn = pi_objAnchorPoint is ITabItemAbility objTabItem ? objTabItem.IsSelected : false;
+            }));
+            return bReturn;
         }
 
         #endregion

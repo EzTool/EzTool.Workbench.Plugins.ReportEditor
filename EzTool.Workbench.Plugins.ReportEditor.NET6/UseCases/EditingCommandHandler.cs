@@ -7,9 +7,11 @@ using EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document;
 using EzTool.Workbench.Plugins.ReportEditor.NET6.Enums;
 using System.Windows.Documents;
 using System;
+using EzTool.SDK.WPF.Nerve.MVVM.Tags;
 
 namespace EzTool.Workbench.Plugins.ReportEditor.NET6.UseCases
 {
+
     public class EditingCommandHandler :
         IActionHandler
     {
@@ -26,15 +28,18 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.UseCases
 
                 if (Enum.TryParse(pi_objRequire.Parameters, out EditingCommandType nType))
                 {
-                    switch (nType)
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        case EditingCommandType.BulletedList:
-                            EditingCommands.ToggleBullets.Execute(null, objView.MainBox);
-                            break;
-                        case EditingCommandType.Numbering:
-                            EditingCommands.ToggleNumbering.Execute(null, objView.MainBox);
-                            break;
-                    }
+                        switch (nType)
+                        {
+                            case EditingCommandType.BulletedList:
+                                EditingCommands.ToggleBullets.Execute(null, objView.MainBox);
+                                break;
+                            case EditingCommandType.Numbering:
+                                EditingCommands.ToggleNumbering.Execute(null, objView.MainBox);
+                                break;
+                        }
+                    }));
                 }
             }
 
