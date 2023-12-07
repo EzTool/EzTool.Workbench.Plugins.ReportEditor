@@ -25,11 +25,11 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document.Events
                 objResponse.Result.Decode<ShowTableEditorResultData>() :
                 new ShowTableEditorResultData() { IsModify = false };
 
-            if (objResult.IsModify)
+            if (objResult != null && objResult.IsModify)
             {
-                //ViewContext.RIchTextBox.Insert(objResult.Table);
-                var sHashCode = ViewContext.RichTextBox.GetAnchorPoint();
-                ShowSheetEditor(sHashCode);
+                ViewContext.RichTextBox.Insert(objResult.Table);
+                //var sHashCode = ViewContext.RichTextBox.GetAnchorPoint();
+                //ShowSheetEditor(sHashCode);
             }
         }
 
@@ -46,7 +46,7 @@ namespace EzTool.Workbench.Plugins.ReportEditor.NET6.Views.Document.Events
                 Operator = $@"SheetEditor",
                 Parameters = new ShowSheetEditorSendData()
                 {
-                    RegiontHashCode = pi_sHashCode 
+                    RegiontHashCode = pi_sHashCode
                 }.Encode().ToString()
             };
             var objResponse = ViewContext.Presenter.OnViewEvent(objRequire);

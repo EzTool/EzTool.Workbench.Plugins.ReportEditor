@@ -22,6 +22,8 @@
     <None Remove="_images\new48.png" />
     <None Remove="_images\numberlist16.png" />
     <None Remove="_images\numberlist48.png" />
+    <None Remove="_images\Open.png" />
+    <None Remove="_images\Save.png" />
     <None Remove="_images\ul.gif" />
   </ItemGroup>
 
@@ -51,6 +53,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="_images\numberlist48.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="_images\Open.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="_images\Save.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="_images\ul.gif">
