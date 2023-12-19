@@ -10,11 +10,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		LICENSE = LICENSE
 		README.md = README.md
+		ReportEdtor.nuspec = ReportEdtor.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_TESTs", "_TESTs", "{E07B804F-9B84-4D51-ACC8-8700BCB0FF65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UT.EzTool.Workbench.Plugins.ReportEditor.NET6", "_TESTs\UT.EzTool.Workbench.Plugins.ReportEditor.NET6\UT.EzTool.Workbench.Plugins.ReportEditor.NET6.csproj", "{9FAF7C58-82B1-42E6-A009-C074467718DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UT.EzTool.Workbench.Plugins.ReportEditor.NET6", "_TESTs\UT.EzTool.Workbench.Plugins.ReportEditor.NET6\UT.EzTool.Workbench.Plugins.ReportEditor.NET6.csproj", "{9FAF7C58-82B1-42E6-A009-C074467718DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
